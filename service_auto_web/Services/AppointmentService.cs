@@ -3,6 +3,7 @@ using service_auto_web.Data;
 using service_auto_web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace service_auto_web.Services
     {
         private readonly ApplicationDbContext _context;
         private UnitOfWork unitOfWork;
+        private ExportFactory exporter;
 
         public AppointmentService(ApplicationDbContext context)
         {
@@ -91,6 +93,20 @@ namespace service_auto_web.Services
             return unitOfWork.AppointmentRepository.Get(app => app.Date.Equals(date));
         }
 
+        public bool AppointmentExists(DateTime date)
+        {
+            IEnumerable<Appointment> app = getByDate(date);
+            if (app.ToList().Count != 0)
+                return false;
+            else
+                return true;
+        }
+
+        //public byte[]  export(String format)
+        //{
+        //    exporter = new ExportFactory(format);
+        //    return exporter.export(listAppointments());
+        //}
 
 
     }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\POLI\\III\\Sem2\\PS\\tema2\\service_auto_web\\service_auto_web\\service_auto_web.csproj": {}
+    "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj": {}
   },
   "projects": {
-    "E:\\POLI\\III\\Sem2\\PS\\tema2\\service_auto_web\\service_auto_web\\service_auto_web.csproj": {
+    "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\POLI\\III\\Sem2\\PS\\tema2\\service_auto_web\\service_auto_web\\service_auto_web.csproj",
+        "projectUniqueName": "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj",
         "projectName": "service_auto_web",
-        "projectPath": "E:\\POLI\\III\\Sem2\\PS\\tema2\\service_auto_web\\service_auto_web\\service_auto_web.csproj",
+        "projectPath": "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj",
         "packagesPath": "C:\\Users\\Mirsi\\.nuget\\packages\\",
-        "outputPath": "E:\\POLI\\III\\Sem2\\PS\\tema2\\service_auto_web\\service_auto_web\\obj\\",
+        "outputPath": "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mirsi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,6 +65,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.2, )"
+            },
+            "servicestack.text": {
+              "target": "Package",
+              "version": "[5.8.0, )"
             }
           },
           "imports": [

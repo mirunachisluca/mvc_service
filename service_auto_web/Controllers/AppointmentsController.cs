@@ -16,33 +16,33 @@ namespace service_auto_web.Controllers
     public class AppointmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private AppointmentService appService;
+        private AppointmentService appointmentService;
 
         public AppointmentsController(ApplicationDbContext context)
         {
             _context = context;
-            appService = new AppointmentService(_context);
+            appointmentService = new AppointmentService(_context);
         }
 
         // GET: Appointments
         public async Task<IActionResult> Index(string clientName, string date1, string date2)
         {
             if (!String.IsNullOrEmpty(clientName))
-                return View(appService.getByNameAppointments(clientName));
+                return View(appointmentService.getByNameAppointments(clientName));
             else
                 if (!String.IsNullOrEmpty(date1) && String.IsNullOrEmpty(date2))
-                return View(appService.getByDate(date1));
+                return View(appointmentService.getByDate(date1));
             else
                 if (!String.IsNullOrEmpty(date1) && !String.IsNullOrEmpty(date2))
-                return View(appService.getBetweenDates(date1, date2));
+                return View(appointmentService.getBetweenDates(date1, date2));
             else
-                return View(appService.listAppointments().ToList());
+                return View(appointmentService.listAppointments().ToList());
         }
 
         // GET: Appointments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            return View(appService.GetByID(id));
+            return View(appointmentService.GetByID(id));
         }
 
         // GET: Appointments/Create
@@ -60,9 +60,9 @@ namespace service_auto_web.Controllers
         {
             try
             {
-                if (ModelState.IsValid && AppointmentExists(appointment.Date))
+                if (ModelState.IsValid && appointmentService.AppointmentExists(appointment.Date))
                 {
-                    appService.addAppointment(appointment);
+                    appointmentService.addAppointment(appointment);
                     return RedirectToAction("Index");
                 }
                 else
@@ -87,7 +87,7 @@ namespace service_auto_web.Controllers
                 return NotFound();
             }
 
-            var appointment = appService.GetByID(id);
+            var appointment = appointmentService.GetByID(id);
             if (appointment == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace service_auto_web.Controllers
             {
                 try
                 {
-                    appService.Update(appointment);
+                    appointmentService.Update(appointment);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -137,7 +137,7 @@ namespace service_auto_web.Controllers
                 return NotFound();
             }
 
-            var appointment = appService.GetByID(id);
+            var appointment = appointmentService.GetByID(id);
             if (appointment == null)
             {
                 return NotFound();
@@ -151,22 +151,22 @@ namespace service_auto_web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            appService.Delete(id);
+            appointmentService.Delete(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public ActionResult Export(string format)
+        {
+            IExporter exporter = ExportFactory.GetExporter(format, appointmentService.listAppointments());
+            return File(exporter.GetExportBytes(), exporter.GetContentType(), exporter.GetFileDownloadName());
+
         }
 
         private bool AppointmentExists(int id)
         {
-            return appService.appointmentExists(id);
+            return appointmentService.appointmentExists(id);
         }
 
-        private bool AppointmentExists(DateTime date)
-        {
-            IEnumerable<Appointment> app = appService.getByDate(date);
-            if (app.ToList().Count != 0)
-                return false;
-            else 
-                return true;
-        }
+        
     }
 }

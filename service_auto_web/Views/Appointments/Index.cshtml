@@ -18,9 +18,25 @@
         From : <input type="date" name="Date1">
         To : <input type="date" name="Date2">
         <input type="submit" value="Search date" />
+
     </p>
 
 </form>
+
+
+<form asp-controller="Appointments" asp-action="Export" method="get">
+    <p>
+        <select id="" name="Format">
+            <option value="json">json</option>
+            <option value="csv">csv</option>
+        </select>
+        <input type="submit" value="Download" />
+
+    </p>
+
+</form>
+
+
 
 <table class="table">
     <thead>
