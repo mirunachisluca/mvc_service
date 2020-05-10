@@ -15,11 +15,11 @@ namespace service_auto_web.Services
         {
             if (format.Equals("csv"))
             {
-                return new CsvExporter("application/csv", "appointments.csv",content);
+                return new CsvExporter("application/csv", "appointments.csv", content);
             }
             else if (format.Equals("json"))
             {
-               return new JsonExporter("application/json", "appointments.json",content);
+               return new JsonExporter("application/json", "appointments.json", content);
             }
 
             return null;

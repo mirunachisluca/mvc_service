@@ -13,7 +13,6 @@ namespace service_auto_web.Services
     {
         private readonly ApplicationDbContext _context;
         private UnitOfWork unitOfWork;
-        private ExportFactory exporter;
 
         public AppointmentService(ApplicationDbContext context)
         {
@@ -62,12 +61,6 @@ namespace service_auto_web.Services
             return unitOfWork.AppointmentRepository.GetByID(id);
         }
 
-        public void Update(int? id)
-        {
-            Appointment app = unitOfWork.AppointmentRepository.GetByID(id);
-            
-        }
-
         public void Update(Appointment appointment)
         {
             unitOfWork.AppointmentRepository.Update(appointment);
@@ -101,12 +94,6 @@ namespace service_auto_web.Services
             else
                 return true;
         }
-
-        //public byte[]  export(String format)
-        //{
-        //    exporter = new ExportFactory(format);
-        //    return exporter.export(listAppointments());
-        //}
 
 
     }
