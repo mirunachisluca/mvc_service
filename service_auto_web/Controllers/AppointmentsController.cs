@@ -23,7 +23,7 @@ namespace service_auto_web.Controllers
             _context = context;
             appointmentService = new AppointmentService(_context);
         }
-
+        
         // GET: Appointments
         public async Task<IActionResult> Index(string clientName, string date1, string date2)
         {
@@ -38,6 +38,7 @@ namespace service_auto_web.Controllers
             else
                 return View(appointmentService.listAppointments().ToList());
         }
+
 
         // GET: Appointments/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -130,7 +131,7 @@ namespace service_auto_web.Controllers
         }
 
         // GET: Appointments/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+           public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -161,6 +162,7 @@ namespace service_auto_web.Controllers
             return File(exporter.GetExportBytes(), exporter.GetContentType(), exporter.GetFileDownloadName());
 
         }
+
 
         private bool AppointmentExists(int id)
         {

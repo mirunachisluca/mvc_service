@@ -4,37 +4,40 @@
     ViewData["Title"] = "Appointments";
 }
 
-<h1>Appointments</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-<form asp-controller="Appointments" asp-action="Index" method="get">
-    <p>
-        <input type="text" name="ClientName">
-        <input type="submit" value="Search name" />
-
-        From : <input type="date" name="Date1">
-        To : <input type="date" name="Date2">
-        <input type="submit" value="Search date" />
-
-    </p>
-
-</form>
+<div style="clear: both">
+    <h1 style="float: left">Appointments</h1>
+    <p style="float: right"> <a asp-action="Create">Create New Appointment</a></p>
+</div>
 
 
-<form asp-controller="Appointments" asp-action="Export" method="get">
-    <p>
-        <select id="" name="Format">
-            <option value="json">json</option>
-            <option value="csv">csv</option>
-        </select>
-        <input type="submit" value="Download" />
+<div style="clear: both">
+    <form asp-controller="Appointments" asp-action="Index" method="get">
 
-    </p>
+        <p style="float: left">
+            Name: <input type="text" name="ClientName">
+            From : <input type="date" name="Date1">
+            To : <input type="date" name="Date2">
 
-</form>
+            <input type="submit" value="Search" />
+        </p>
+
+    </form>
+
+    <form asp-controller="Appointments" asp-action="Export" method="get">
+        <p style="float: right">
+            <select id="" name="Format">
+                <option value="json">json</option>
+                <option value="csv">csv</option>
+            </select>
+            <input type="submit" value="Download" />
+
+        </p>
+
+    </form>
+</div>
+
+
 
 
 

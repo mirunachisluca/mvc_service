@@ -18,15 +18,14 @@ namespace service_auto_web.Services
 
         protected override void export(IEnumerable<Appointment> content)
         {
-            string text = "";
-            foreach (Appointment app in content)
+            var options = new JsonSerializerOptions
             {
-                string jsonString = JsonSerializer.Serialize(app);
-                text += jsonString;
-                text += "\n";
-            }
+                WriteIndented = true
+            };
 
-            _exportBytes = System.Text.Encoding.UTF8.GetBytes(text);
+            string json = JsonSerializer.Serialize(content, options);
+
+            _exportBytes = System.Text.Encoding.UTF8.GetBytes(json);
 
         }
 

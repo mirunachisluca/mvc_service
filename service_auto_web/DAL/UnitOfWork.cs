@@ -1,4 +1,5 @@
-﻿using service_auto_web.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using service_auto_web.Data;
 using service_auto_web.Models;
 using System;
 using System.Collections.Generic;
