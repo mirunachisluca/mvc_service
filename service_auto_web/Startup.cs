@@ -1,22 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using service_auto_web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using service_auto_web.Areas.Identity;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace service_auto_web
 {
@@ -77,6 +71,37 @@ namespace service_auto_web
                 options.LogoutPath = "/Identity/Account/Logout";
                 options.SlidingExpiration = true;
             });
+
+
+            #region 'JWT'
+            // configure strongly typed settings objects
+            var jwtSection = Configuration.GetSection("JwtBearerTokenSettings");
+            services.Configure<JwtBearerTokenSettings>(jwtSection);
+            var jwtBearerTokenSettings = jwtSection.Get<JwtBearerTokenSettings>();
+            var key = Encoding.ASCII.GetBytes(jwtBearerTokenSettings.SecretKey);
+
+            services.AddAuthentication()
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.LogoutPath = "/Identity/Account/Logout";
+                options.SlidingExpiration = true;
+            }
+            )
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidIssuer = jwtBearerTokenSettings.Issuer,
+                    ValidAudience = jwtBearerTokenSettings.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                };
+            });
+            #endregion
+
 
         }
 

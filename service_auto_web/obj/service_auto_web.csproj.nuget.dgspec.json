@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj": {}
+    "D:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj": {}
   },
   "projects": {
-    "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj": {
+    "D:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj",
+        "projectUniqueName": "D:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj",
         "projectName": "service_auto_web",
-        "projectPath": "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj",
-        "packagesPath": "C:\\Users\\Mirsi\\.nuget\\packages\\",
-        "outputPath": "E:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\obj\\",
+        "projectPath": "D:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\service_auto_web.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "D:\\POLI\\III\\Sem2\\PS\\service_auto_web\\service_auto_web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mirsi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.3, )"
@@ -89,6 +93,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -97,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
